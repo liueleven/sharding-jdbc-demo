@@ -62,9 +62,11 @@ public class ShardingTest {
 
         // 配置Order表规则
         TableRuleConfiguration orderTableRuleConfig = new TableRuleConfiguration();
-        // 设置逻辑表，ds_${0..1}有两个库，t_order_${0..1}有两个表
+        // 设置逻辑表
         orderTableRuleConfig.setLogicTable("t_order");
         // 设置实际数据节点
+        // 行表达式：https://shardingsphere.apache.org/document/current/cn/features/sharding/other-features/inline-expression/
+        // 填写范围区间，最终会被解析为：ds_0.t_order_0   ds_0.t_order_1   ds_1.t_order_0    ds_1.t_order_1
         orderTableRuleConfig.setActualDataNodes("ds_${0..1}.t_order_${0..1}");
         // 设置主键列名称
         orderTableRuleConfig.setKeyGeneratorColumnName("oid");
