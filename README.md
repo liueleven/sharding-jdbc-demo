@@ -1,2 +1,6 @@
-# sharding-jdbc-demo
-sharding-jdbc 数据库分库分表
+# Sharding-JDBC Demo
+这个仓库是用来演示Sharding-JDBC的使用，文档有中文的，[官网](https://shardingsphere.apache.org)
+
+
+## 模块介绍
+1. 01-demo，简单的演示了往不同的库插入数据，需要先执行SQL脚本: 01-demo/data.sql
