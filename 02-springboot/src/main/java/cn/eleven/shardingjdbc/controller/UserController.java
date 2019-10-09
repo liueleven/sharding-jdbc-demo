@@ -73,5 +73,11 @@ public class UserController {
     	return cs.save(code);
     }
 
+    @GetMapping("/update-code")
+    public boolean updateCode(Code code) {
+        code.setName(getRandom() + "-code-update");
+        return cs.update(code);
+    }
+
 
 }

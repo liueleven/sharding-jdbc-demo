@@ -1,6 +1,7 @@
 package cn.eleven.shardingjdbc.service;
 
 import cn.eleven.shardingjdbc.entity.Code;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface CodeService extends IService<Code> {
     boolean save(Code entity);
 
     List<Code> getCodeList();
+    boolean update(Code entity);
+
 }

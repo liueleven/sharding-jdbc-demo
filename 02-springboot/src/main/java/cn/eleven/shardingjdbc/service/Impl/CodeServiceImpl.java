@@ -3,6 +3,7 @@ package cn.eleven.shardingjdbc.service.Impl;
 import cn.eleven.shardingjdbc.entity.Code;
 import cn.eleven.shardingjdbc.mapper.CodeMapper;
 import cn.eleven.shardingjdbc.service.CodeService;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -26,4 +27,9 @@ public class CodeServiceImpl extends ServiceImpl<CodeMapper, Code> implements Co
         return baseMapper.selectList(Wrappers.<Code>lambdaQuery());
     }
 
+    public boolean update(Code entity) {
+        UpdateWrapper updateWrapper = new UpdateWrapper();
+        updateWrapper.eq("id",entity.getId());
+        return super.update(entity, updateWrapper);
+    }
 }
