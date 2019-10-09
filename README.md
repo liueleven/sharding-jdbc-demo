@@ -1,5 +1,5 @@
 # Sharding-JDBC Demo
-这个仓库是用来演示Sharding-JDBC的使用，文档有中文的，[官网](https://shardingsphere.apache.org)
+这个仓库是用来演示[Sharding-JDBC的使用](https://www.yuque.com/liueleven/ehffhb/msaxpq)，文档有中文的，[官网](https://shardingsphere.apache.org)
 
 
 ## 模块介绍
