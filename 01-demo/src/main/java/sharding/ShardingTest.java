@@ -9,6 +9,7 @@ import io.shardingsphere.shardingjdbc.api.ShardingDataSourceFactory;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,6 +54,30 @@ public class ShardingTest {
         ps.execute();
     }
 
+    /**
+     * SQL执行
+     * @param ds    数据源
+     * @param sql   要执行的sql
+     * @throws SQLException
+     */
+    public static void execute(DataSource ds, String sql) throws SQLException {
+        Connection conn = ds.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.execute();
+    }
+
+    /**
+     * SQL执行
+     * @param ds    数据源
+     * @param sql   要执行的sql
+     * @throws SQLException
+     */
+    public static ResultSet executeQuery(DataSource ds, String sql) throws SQLException {
+        Connection conn = ds.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        return ps.executeQuery();
+    }
+
     public static void main(String[] args) {
         Map<String, DataSource> map = new HashMap<>();
         map.put("ds_0", createDataSource("root", "root", "jdbc:mysql://localhost:3306/ds_0"));
@@ -82,6 +107,9 @@ public class ShardingTest {
 
         try {
             DataSource ds = ShardingDataSourceFactory.createDataSource(map, config, new HashMap(), new Properties());
+            // 插入前先清空，防止主键重复插入失败
+            String delSql = "delete from t_order";
+            execute(ds,delSql);
 
             // 插入数据
             for (int i = 1; i <= 10; i++) {
